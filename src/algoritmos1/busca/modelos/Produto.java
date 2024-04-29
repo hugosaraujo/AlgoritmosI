@@ -1,10 +1,10 @@
 package algoritmos1.busca.modelos;
 
-public class Carro {
+public class Produto {
     private String modelo;
     private int valor;
 
-    public Carro(String modelo, int valor) {
+    public Produto(String modelo, int valor) {
         this.modelo = modelo;
         this.valor = valor;
     }
