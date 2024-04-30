@@ -5,6 +5,7 @@ import algoritmos1.busca.modelos.Produto;
 public class TestaOrdenacao {
 
     public static void main(String[] args) {
+        int totalDeElementos = 5;
 
         Produto produtos[] = {
                 new Produto("Lamborguini", 1000000),
@@ -13,20 +14,25 @@ public class TestaOrdenacao {
                 new Produto("Smart", 46000),
                 new Produto("Fusca", 17000)
         };
-
-
-        for (int atual = 0; atual < produtos.length - 1; atual++) {
-            int menor = buscaMenor(produtos, atual, produtos.length);
-
-            Produto produtoAtual = produtos[atual];
-            Produto produtoMenor = produtos[menor];
-
-            produtos[atual] = produtoMenor;
-            produtos[menor] = produtoAtual;
-        }
+        ordena(produtos, totalDeElementos);
 
         for (var produto : produtos){
             System.out.println(produto);
+        }
+    }
+
+    private static void ordena(Produto[] produtos, int quantidadeElementos) {
+        for (int atual = 0; atual < quantidadeElementos - 1; atual++) {
+            System.out.println("Estou na casinha " + atual);
+            int menor = buscaMenor(produtos, atual, quantidadeElementos);
+            System.out.println("Trocando " + atual + " com o " + menor);
+
+            Produto produtoAtual = produtos[atual];
+            Produto produtoMenor = produtos[menor];
+            System.out.println("Trocando " + produtoAtual.getModelo() + " - " + produtoMenor.getModelo());
+
+            produtos[atual] = produtoMenor;
+            produtos[menor] = produtoAtual;
         }
     }
 
