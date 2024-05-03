@@ -14,27 +14,46 @@ public class TestaOrdenacao {
                 new Produto("Smart", 46000),
                 new Produto("Fusca", 17000)
         };
-        ordena(produtos, totalDeElementos);
+
+        //insertionSort(produtos, totalDeElementos);
+        selectionSort(produtos, totalDeElementos);
 
         for (var produto : produtos){
             System.out.println(produto);
         }
     }
 
-    private static void ordena(Produto[] produtos, int quantidadeElementos) {
+    private static void insertionSort(Produto[] produtos, int quantidadeElementos){
+        for (int atual = 1; atual < quantidadeElementos; atual++) {
+            System.out.println("Estou na posicao " + atual);
+            int analise = atual;
+            while(analise > 0
+                    && produtos[analise].getValor() < produtos[analise-1].getValor()){
+                troca(produtos, analise, analise -1 );
+                analise--;
+            }
+            
+        }
+    }
+
+    private static void troca(Produto[] produtos, int primeiro, int segundo) {
+        System.out.println("Trocando " + primeiro + " com o " + segundo);
+        Produto primeiroProduto = produtos[primeiro];
+        Produto segundoProduto = produtos[segundo];
+
+        System.out.println("Estou trocando " +primeiroProduto.getModelo() + " com " + segundoProduto.getModelo());
+        produtos[primeiro] = segundoProduto;
+        produtos[segundo] = primeiroProduto;
+    }
+
+    private static void selectionSort(Produto[] produtos, int quantidadeElementos) {
         for (int atual = 0; atual < quantidadeElementos - 1; atual++) {
             System.out.println("Estou na casinha " + atual);
             int menor = buscaMenor(produtos, atual, quantidadeElementos);
-            System.out.println("Trocando " + atual + " com o " + menor);
-
-            Produto produtoAtual = produtos[atual];
-            Produto produtoMenor = produtos[menor];
-            System.out.println("Trocando " + produtoAtual.getModelo() + " - " + produtoMenor.getModelo());
-
-            produtos[atual] = produtoMenor;
-            produtos[menor] = produtoAtual;
+            troca(produtos, atual, menor);
         }
     }
+
 
     private static int buscaMenor(Produto[] precosCarros, int inicio, int termino) {
         int maisBarato = inicio;
